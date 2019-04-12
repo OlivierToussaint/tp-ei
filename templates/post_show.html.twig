@@ -1,0 +1,32 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    <div class="card mt-2">
+        <div class="card-body">
+            <h5 class="card-title">{{ post.title }} par {{ userRepository.getNameById(post.userId) }}</h5>
+            <h6 class="card-subtitle mb-2 text-muted">le {{ post.postDate|date('d/m/Y') }}</h6>
+            <p class="card-text">{{ post.content }}</p>
+        </div>
+    </div>
+
+    {% for comment in comments %}
+        <div class="m-2 p-2">
+            <h5>{{ userRepository.getNameById(post.userId) }} a commenté le {{ comment.commentDate|date('d/m/Y') }} :</h5>
+            <p>{{ comment.content }}</p>
+        </div>
+    {% endfor %}
+
+    {% if session.id is defined %}
+        <form method="post">
+            <div class="form-group">
+                <label for="content">Commentaire</label>
+                <textarea id="content" name="content" class="form-control"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    {% else %}
+        <p>Il faut être connecter pour mettre un commentaire</p>
+    {% endif %}
+
+{% endblock %}

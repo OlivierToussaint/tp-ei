@@ -1,0 +1,13 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+    {% for post in posts %}
+        <div class="card mt-2">
+            <div class="card-body">
+                <h5 class="card-title">{{ post.title }} par {{ userRepository.getNameById(post.userId) }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">le {{ post.postDate|date('d/m/Y') }}</h6>
+                <a href="post_show.php?id={{ post.id }}">Voir l'article</a>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

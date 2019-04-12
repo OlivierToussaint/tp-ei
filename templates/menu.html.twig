@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">Mon Skyblog</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav">
+
+
+            {% if session.admin is defined and session.admin == 1  %}
+
+            <li class="nav-item">
+                <a class="nav-link" href="post_add.php">Ajouter un article</a>
+            </li>
+            {% endif %}
+            <li class="nav-item">
+                <a class="nav-link" href="post_all.php">Voir les articles</a>
+            </li>
+            {% if session.id is not defined %}
+                <li class="nav-item ">
+                    <a class="nav-link" href="user_add.php">Inscription </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="connexion.php">Connexion</a>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="deconnection.php">Deconnection</a>
+                </li>
+            {% endif %}
+    </div>
+</nav>
