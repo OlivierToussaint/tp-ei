@@ -35,18 +35,18 @@ class UserRepository
         return $response->fetchObject('App\Model\User');
     }
 
-    public function findByEmail(string $name)
+    public function findByEmail(string $email)
     {
         $response = $this->base->prepare('SELECT * FROM user WHERE email = :email');
-        $response->bindValue(':email', $name);
+        $response->bindValue(':email', $email);
         $response->execute();
         return $response->fetch();
     }
 
 
-    public function login(string $name, string $password)
+    public function login(string $email, string $password)
     {
-        if ($result = $this->findByEmail($name)) {
+        if ($result = $this->findByEmail($email)) {
 
             if (password_verify($password, $result['password'])) {
                 $user = $this->find($result['id']);
